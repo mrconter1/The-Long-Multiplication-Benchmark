@@ -1,5 +1,7 @@
 def generate_multiplication_steps(a, b):
-    print("Calculating: ", a, "*", b)
+    print("Calculating:\n")
+    print_standing_form(a, b)
+    
     a_str = str(a)
     b_str = str(b)
     
@@ -27,6 +29,18 @@ def generate_multiplication_steps(a, b):
     print(f"\n{first_digit} * {a} = {final_result}\n")
     print(f"Step result: {final_result}")
 
+def print_standing_form(a, b):
+    a_str = str(a)
+    b_str = str(b)
+    
+    max_len = max(len(a_str), len(b_str))
+    a_str = a_str.zfill(max_len)
+    b_str = b_str.zfill(max_len)
+    
+    print(f"    {a_str}")
+    print(f"x   {b_str}")
+    print("-------------")
+
 def print_step_intro(first_digit, a):
     print()
     print(f"Step 1: Calculate for the 1st digit from the right ({first_digit}):")
@@ -45,7 +59,7 @@ def calculate_intermediate_results(first_digit, a_digits):
 def print_intermediate_results(intermediate_results, first_digit, a_digits):
     for i, (product, shifted_product) in enumerate(intermediate_results):
         shift_note = "(shift one left)" if i > 0 else ""
-        print(f"{first_digit} * {a_digits[i]} = {shifted_product:06d} {shift_note}")
+        print(f"{first_digit} * {a_digits[i]} = {shifted_product} {shift_note}")
 
 def generate_column_contributions(intermediate_results, num_digits):
     # Find the length of the longest shifted product
@@ -82,4 +96,4 @@ def calculate_final_result(intermediate_results):
     return sum(shifted_product for _, shifted_product in intermediate_results)
 
 # Example usage
-generate_multiplication_steps(64369, 95689)
+generate_multiplication_steps(643213213369, 953213213689)
