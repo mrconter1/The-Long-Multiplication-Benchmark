@@ -2,13 +2,13 @@
 
 #### Motivation
 
-Imagine a hypothetical LLM with the following three qualities:
+Imagine a hypothetical LLM with the following premises:
 
-1. It has an infinite context length.
-2. It capable enough to use the schoolbook method for long multiplication.
-3. It has infinite computational time and resources
+1. It is capable of performing schoolbook multiplication.
+2. It can **perfectly** utilize information within its context window.
+3. It has the necessary computational resources.
 
-Given these qualities, it should be able to compute B = **C * A** to an **arbitrary** number of digits and find the exact value.
+Given these premises, the context length should be the **only** limiting factor in determining how large numbers it can calculate.
 
 #### Description
 
@@ -41,6 +41,6 @@ Each entry in the results table represents the percentage of correct answers for
 
 ### Conclusion
 
-This repository offers a scalable method to validate the capability of future LLMs to not only read long contexts but also to constructively use them. By leveraging long multiplication as a benchmark, it provides a straightforward way to evaluate how well LLMs utilize long contexts meaningfully. The results show that newer models can better handle longer contexts, emphasizing the need for continuous improvement. 
+The benchmark demonstrates that while the context sizes and computational resources of current LLMs are theoretically sufficient, the limiting factor is their inability to actually utilize the information within their context windows efficiently.
 
-This benchmark ensures that LLMs can perform complex tasks effectively, combining long contexts with straightforward operations to yield exact answers, thus validating their practical application of long-context understanding.
+This repository offers a scalable method to validate the capability of future LLMs to not only read long contexts but also to constructively use them. By leveraging long multiplication as a benchmark, it provides a straightforward way to evaluate how well LLMs utilize long contexts meaningfully. 
