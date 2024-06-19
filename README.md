@@ -1,5 +1,9 @@
 # The Long Multiplication Benchmark
 
+# The Long Multiplication Benchmark
+
+The Long Multiplication Benchmark evaluates Large Language Models (LLMs) on their ability to handle and utilize extensive contexts by solving long multiplication problems. Despite having sufficient context sizes and computational resources, current LLMs struggle to effectively use the information within their context windows, highlighting a serious limitation in their ability to actually use their context.
+
 #### Motivation
 
 Imagine a hypothetical LLM with the following premises:
