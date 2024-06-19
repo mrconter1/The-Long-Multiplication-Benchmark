@@ -4,7 +4,7 @@
 
 Imagine a hypothetical LLM with the following premises:
 
-1. It is capable of performing schoolbook multiplication.
+1. It is capable of performing schoolbook long multiplication.
 2. It can **perfectly** utilize information within its context window.
 3. It has the necessary computational resources.
 
