@@ -1,6 +1,5 @@
 def generate_multiplication_steps(a, b):
     print("Calculating: ", a, "*", b)
-    
     a_str = str(a)
     b_str = str(b)
     
@@ -8,40 +7,61 @@ def generate_multiplication_steps(a, b):
     first_digit = int(b_str[-1])
     
     # Calculate the product of a and the first digit of b
-    current_step = first_digit * a
+    print_step_intro(first_digit, a)
     
+    a_digits = list(map(int, reversed(a_str)))
+    intermediate_results = calculate_intermediate_results(first_digit, a_digits)
+    
+    print_intermediate_results(intermediate_results, first_digit, a_digits)
+    
+    print("\nMove from right-most column to left-most.\n")
+    
+    column_contributions, columns = generate_column_contributions(intermediate_results, len(a_digits))
+    
+    breakdown = calculate_breakdown(columns, column_contributions)
+    
+    print_breakdown(breakdown)
+    
+    final_result = calculate_final_result(intermediate_results)
+    
+    print(f"\n{first_digit} * {a} = {final_result}\n")
+    print(f"Step result: {final_result}")
+
+def print_step_intro(first_digit, a):
     print()
     print(f"Step 1: Calculate for the 1st digit from the right ({first_digit}):")
     print()
     print(f"{first_digit} * {a} = ?")
     print()
-    
-    a_digits = list(map(int, reversed(a_str)))
+
+def calculate_intermediate_results(first_digit, a_digits):
     intermediate_results = []
-    
     for i, digit in enumerate(a_digits):
         product = first_digit * digit
         shifted_product = product * (10 ** i)
         intermediate_results.append((product, shifted_product))
-    
-    # Print the detailed breakdown
+    return intermediate_results
+
+def print_intermediate_results(intermediate_results, first_digit, a_digits):
     for i, (product, shifted_product) in enumerate(intermediate_results):
         shift_note = "(shift one left)" if i > 0 else ""
         print(f"{first_digit} * {a_digits[i]} = {shifted_product:06d} {shift_note}")
-    
-    print("\nMove from right-most column to left-most.\n")
-    
-    # Generate the dynamic addition breakdown
-    columns = [0] * (len(a_digits) + 1)  # +1 to handle the carry at the last step
-    
-    # Store intermediate digit contributions for each column
-    column_contributions = [[] for _ in range(len(columns))]
+
+def generate_column_contributions(intermediate_results, num_digits):
+    # Find the length of the longest shifted product
+    max_length = max(len(str(shifted_product)) for _, shifted_product in intermediate_results)
+    columns = [0] * max_length
+    column_contributions = [[] for _ in range(max_length)]
     
     for i, (product, shifted_product) in enumerate(intermediate_results):
-        for j, digit in enumerate(str(shifted_product).zfill(6)[::-1]):  # reverse for column-wise addition
+        shifted_str = str(shifted_product).zfill(max_length)[::-1]  # reverse for column-wise addition
+        for j, digit in enumerate(shifted_str):
             columns[j] += int(digit)
             column_contributions[j].append(int(digit))
     
+    return column_contributions, columns
+
+def calculate_breakdown(columns, column_contributions):
     carry = 0
     breakdown = []
     
@@ -50,14 +70,16 @@ def generate_multiplication_steps(a, b):
         carry, value = divmod(total, 10)
         breakdown.append((i + 1, column_contributions[i], value, carry))
     
+    return breakdown
+
+def print_breakdown(breakdown):
     for i, (col, original, value, carry) in enumerate(breakdown):
         additions = " + ".join(map(str, original))
         carry_note = f"({carry} is carried)" if carry else ""
         print(f"Column {col}: {additions} = {value} {carry_note}")
-    
-    # Print the final result of this multiplication step
-    final_result = sum(shifted_product for _, shifted_product in intermediate_results)
-    print(f"\n{first_digit} * {a} = {final_result}\n")
-    print(f"Step result: {final_result}")
 
+def calculate_final_result(intermediate_results):
+    return sum(shifted_product for _, shifted_product in intermediate_results)
+
+# Example usage
 generate_multiplication_steps(64369, 95689)
