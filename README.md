@@ -23,7 +23,15 @@ The answer to this problem is 64369 * 95689.
 
 Each entry in the results table represents the percentage of correct answers for 25 samples per number of digits.
 
-TODO
+| Length | gpt-3.5-turbo | gpt-4-turbo | gpt-4o | gemini-1.5-pro |
+|--------|---------------|-------------|--------|----------------|
+| 1      | 100.00        | 100.00      | 100.00 | 100.00         |
+| 2      | 96.00         | 100.00      | 100.00 | 100.00         |
+| 3      | 48.00         | 64.00       | 64.00  | 56.00          |
+| 4      | 4.00          | 12.00       | 12.00  | 20.00          |
+| 5      | 0.00          | 0.00        | 0.00   | 0.00           |
+| 6      | 0.00          | 0.00        | 0.00   | 0.00           |
+| 7      | 0.00          | 0.00        | 0.00   | 0.00           |
 
 ### Benchmark Script
 
