@@ -4,22 +4,29 @@ def generate_multiplication_steps(a, b):
     a_str = str(a)
     b_str = str(b)
     
-    results = []
+    # Take the first rightmost digit of b
+    first_digit = int(b_str[-1])
     
-    for i, digit in enumerate(reversed(b_str)):
-        num_zeros = i
-        current_step = int(digit) * a
-        shifted_step = current_step * (10 ** num_zeros)
-        results.append(shifted_step)
-        print(f"Step {i+1}: Calculate for the {i+1}th digit from the right ({digit}):")
-        print(f"{digit} * {a} = {current_step}")
-        print(f"Shifted left by {num_zeros} places: {shifted_step}")
-        print()
+    # Calculate the product of a and the first digit of b
+    current_step = first_digit * a
     
-    print("Summing up all the shifted results:")
-    total_sum = sum(results)
-    for result in results:
-        print(result)
-    print("Final Result: ", total_sum)
+    print()
+    print(f"Step 1: Calculate for the 1st digit from the right ({first_digit}):")
+    print()
+    print(f"{first_digit} * {a} = ?")
+    print()
+    
+    a_digits = list(map(int, reversed(a_str)))
+    intermediate_results = []
+    
+    for i, digit in enumerate(a_digits):
+        product = first_digit * digit
+        shifted_product = product * (10 ** i)
+        intermediate_results.append((product, shifted_product))
+    
+    # Print the detailed breakdown
+    for i, (product, shifted_product) in enumerate(intermediate_results):
+        shift_note = "(shift one left)" if i > 0 else ""
+        print(f"{first_digit} * {a_digits[i]} = {shifted_product:06d} {shift_note}")
 
 generate_multiplication_steps(64369, 95689)
