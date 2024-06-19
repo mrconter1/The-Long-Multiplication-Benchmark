@@ -2,10 +2,11 @@
 
 #### Motivation
 
-Imagine a hypothetical LLM with the following two qualities:
+Imagine a hypothetical LLM with the following three qualities:
 
 1. It has an infinite context length.
-2. It can use the schoolbook method for long multiplication.
+2. It capable enough to use the schoolbook method for long multiplication.
+3. It has infinite computational time and resources
 
 Given these qualities, it should be able to compute B = **C * A** to an **arbitrary** number of digits and find the exact value.
 
