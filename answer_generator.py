@@ -6,6 +6,7 @@ def generate_multiplication_steps(a, b):
     b_str = str(b)
     
     intermediate_total_results = []
+    step_results = []
     
     for idx, digit_char in enumerate(reversed(b_str)):
         digit = int(digit_char)
@@ -30,6 +31,7 @@ def generate_multiplication_steps(a, b):
         print_breakdown(current_breakdown, idx)
         
         step_result = calculate_final_result(intermediate_results)
+        step_results.append(step_result)
         print(f"\nStep {idx + 1} result: {step_result}\n")
         
     print("\nSum up all steps from right-most column to left-most.\n")
@@ -41,6 +43,9 @@ def generate_multiplication_steps(a, b):
     print_breakdown(total_breakdown)
     
     final_result = calculate_final_result_from_columns(total_columns)
+    
+    print("\nSum everything up:\n")
+    sum_everything_up(step_results)
     
     print(f"\nFinal result: {final_result}\n")
 
@@ -134,5 +139,31 @@ def calculate_final_result_from_columns(columns):
         final_result += column * (10 ** i)
     return final_result
 
+def sum_everything_up(step_results):
+    max_length = len(str(max(step_results)))
+    step_results_str = [str(result).zfill(max_length) for result in step_results]
+    for result in step_results_str:
+        print(f"\t{result}")
+    
+    columns = list(map(list, zip(*[result[::-1] for result in step_results_str])))
+    columns = [[int(digit) for digit in col] for col in columns]
+    
+    carry = 0
+    breakdown = []
+    
+    for idx, col in enumerate(columns):
+        total = sum(col) + carry
+        carry, value = divmod(total, 10)
+        breakdown.append((idx + 1, col, value, carry))
+    
+    print("\nColumn by column addition:")
+    for i, (col, original, value, carry) in enumerate(breakdown):
+        if original:
+            additions = " + ".join(map(str, original))
+        else:
+            additions = "0"
+        carry_note = f"({carry} is carried)" if carry else ""
+        print(f"Column {i + 1}: {additions} = {value} {carry_note}")
+
 # Example usage
-generate_multiplication_steps(423, 314)
+generate_multiplication_steps(64369, 95689)
