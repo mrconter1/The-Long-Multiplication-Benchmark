@@ -30,7 +30,7 @@ def generate_long_multiplication_question(length):
     B = random.randint(10**(length-1), 10**length - 1)
     C = A * B
     
-    question = f"""Use long multiplication to find the exact result of {A} * {B} to full precision. 
+    question = f"""Use the schoolbook long multiplication method to find the exact result of {A} * {B} to full precision. 
         Show **every** step of the multiplication and addition, **including** all carried digits.
         Do not simplify or omit any intermediate calculations. 
         Do not use any tools or calculators. Approximate answers are not allowed. 
