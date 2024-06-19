@@ -7,7 +7,7 @@ Imagine a hypothetical LLM with the following two qualities:
 1. It has an infinite context length.
 2. It can perform long multiplication at a **high school** level.
 
-Given these qualities, it should be able to compute B = **C * A** to an **arbitrary** number of decimal places and find the exact value if **B** is a finite decimal.
+Given these qualities, it should be able to compute B = **C * A** to an **arbitrary** number of digits and find the exact value.
 
 #### Description
 
@@ -27,8 +27,6 @@ TODO
 ### Benchmark Script
 
 [benchmark.py](./benchmark.py) tests different models by generating long multiplication problems and evaluating the models' ability to solve them accurately. The process involves creating a multiplication problem, posing it to the model, and then verifying the precision of the model's answer.
-
-To ensure long multiplication problems with finite decimals, the question creation process involves three main steps. First, an integer **A** is generated based on the specified number of digits. Next, another integer **B** is generated. Finally, the integers **A** and **B** are multiplied to calculate **C**, ensuring that multiplying **A** by **B** results in **C**, thereby guaranteeing a non-repeating finite decimal.
 
 ### Conclusion
 
