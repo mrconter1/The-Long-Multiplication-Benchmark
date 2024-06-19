@@ -16,7 +16,7 @@ def generate_multiplication_steps(a, b):
     
     print_intermediate_results(intermediate_results, first_digit, a_digits)
     
-    print("\nMove from right-most column to left-most.\n")
+    print("\nSum up from right-most column to left-most.\n")
     
     column_contributions, columns = generate_column_contributions(intermediate_results, len(a_digits))
     
