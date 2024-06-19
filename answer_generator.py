@@ -55,4 +55,9 @@ def generate_multiplication_steps(a, b):
         carry_note = f"({carry} is carried)" if carry else ""
         print(f"Column {col}: {additions} = {value} {carry_note}")
     
+    # Print the final result of this multiplication step
+    final_result = sum(shifted_product for _, shifted_product in intermediate_results)
+    print(f"\n{first_digit} * {a} = {final_result}\n")
+    print(f"Step result: {final_result}")
+
 generate_multiplication_steps(64369, 95689)
