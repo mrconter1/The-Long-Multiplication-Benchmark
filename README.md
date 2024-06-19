@@ -15,9 +15,11 @@ Given these qualities, it should be able to compute B = **C * A** to an **arbitr
 In the current landscape of scaled Large Language Models (LLMs), a significant focus has been on their ability to handle large contexts. However, an equally important aspect is their capability to generate long coherent texts. Writing a book, for instance, requires not only the ability to read long contexts but also to generate extensive text. Evaluating such an ability can be challenging, but one scalable and straightforward method is to test the LLMs' ability to perform long multiplication. This task can be done without external tools and is easily scalable. Long multiplication, a fundamental algorithm involving simple calculations, can be performed by humans given enough time, making it a suitable benchmark for LLMs.
 
 For example, consider the long multiplication problem for **n=5**:
-> Use long multiplication to find the exact result of 64369 * 95689 to full precision. Do not use any tools or calculators. Approximate answers are not allowed.
+> Use the schoolbook method to find the exact result of 64369 * 95689. Show all steps and carried digits. Do not use any tools or calculators. Perform all calculations thoroughly and exactly.
 
-The answer to this problem is 64369 * 95689.
+The answer to this problem is 6159405241.
+
+*Note: This is a simplified version of the prompt. The full prompt can be found in the benchmark.*
 
 ### Results
 
