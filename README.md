@@ -16,7 +16,7 @@ In the current landscape of scaled Large Language Models (LLMs), a significant f
 For example, consider the long multiplication problem for **n=5**:
 > Use long multiplication to find the exact result of 64369 * 95689 to full precision. Do not use any tools or calculators. Approximate answers are not allowed.
 
-The answer to this problem is 6169744041.
+The answer to this problem is 64369 * 95689.
 
 ### Results
 
