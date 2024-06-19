@@ -6,7 +6,6 @@ def generate_multiplication_steps(a, b):
     b_str = str(b)
     
     intermediate_total_results = []
-    overall_columns = []
     
     for idx, digit_char in enumerate(reversed(b_str)):
         digit = int(digit_char)
@@ -25,10 +24,10 @@ def generate_multiplication_steps(a, b):
         # Generate column contributions and breakdown for the current step
         current_column_contributions, current_columns = generate_column_contributions(intermediate_total_results)
         
-        current_breakdown = calculate_breakdown(current_columns, current_column_contributions)
+        current_breakdown = calculate_breakdown(current_columns, current_column_contributions, idx)
         
         print("\nIntermediate column summary after this step:\n")
-        print_breakdown(current_breakdown)
+        print_breakdown(current_breakdown, idx)
         
         step_result = calculate_final_result(intermediate_results)
         print(f"\nStep {idx + 1} result: {step_result}\n")
@@ -105,25 +104,26 @@ def generate_total_column_contributions(intermediate_total_results):
     
     return total_column_contributions, total_columns
 
-def calculate_breakdown(columns, column_contributions):
+def calculate_breakdown(columns, column_contributions, shift=0):
     carry = 0
     breakdown = []
     
     for i in range(len(columns)):
         total = columns[i] + carry
         carry, value = divmod(total, 10)
-        breakdown.append((i + 1, [d for d in column_contributions[i] if d != 0], value, carry))
+        breakdown.append((i + 1 + shift, [d for d in column_contributions[i] if d != 0], value, carry))
     
     return breakdown
 
-def print_breakdown(breakdown):
+def print_breakdown(breakdown, shift=0):
     for i, (col, original, value, carry) in enumerate(breakdown):
         if original:
             additions = " + ".join(map(str, original))
         else:
             additions = "0"
         carry_note = f"({carry} is carried)" if carry else ""
-        print(f"Column {col}: {additions} = {value} {carry_note}")
+        shift_note = f"(shifted {shift} step{'s' if shift != 1 else ''} left)" if shift > 0 else ""
+        print(f"Column {col}: {additions} = {value} {carry_note} {shift_note}")
 
 def calculate_final_result(intermediate_results):
     return sum(shifted_product for _, shifted_product in intermediate_results)
