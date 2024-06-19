@@ -5,7 +5,7 @@
 Imagine a hypothetical LLM with the following two qualities:
 
 1. It has an infinite context length.
-2. It can perform long multiplication at a **high school** level.
+2. It can use the schoolbook method for long multiplication.
 
 Given these qualities, it should be able to compute B = **C * A** to an **arbitrary** number of digits and find the exact value.
 
