@@ -1,6 +1,13 @@
+import random
+
 def generate_multiplication_steps(a, b):
-    print("Calculating:\n")
-    print_standing_form(a, b)
+    result_string = []
+    
+    def print_to_result(*args):
+        result_string.append(" ".join(map(str, args)))
+    
+    print_to_result("Calculating:\n")
+    print_standing_form(a, b, print_to_result)
     
     a_str = str(a)
     b_str = str(b)
@@ -11,45 +18,44 @@ def generate_multiplication_steps(a, b):
     for idx, digit_char in enumerate(reversed(b_str)):
         digit = int(digit_char)
         
-        # Calculate the product of a and the current digit of b
-        print_step_intro(digit, a, idx)
+        print_step_intro(digit, a, idx, print_to_result)
         
         a_digits = list(map(int, reversed(a_str)))
         intermediate_results = calculate_intermediate_results(digit, a_digits, idx)
         
-        print_intermediate_results(intermediate_results, digit, a_digits, idx)
+        print_intermediate_results(intermediate_results, digit, a_digits, idx, print_to_result)
         
-        # Summarize after each step
         intermediate_total_results.append(intermediate_results)
         
-        # Generate column contributions and breakdown for the current step
         current_column_contributions, current_columns = generate_column_contributions(intermediate_total_results)
         
         current_breakdown = calculate_breakdown(current_columns, current_column_contributions, idx)
         
-        print("\nIntermediate column summary after this step:\n")
-        print_breakdown(current_breakdown, idx)
+        print_to_result("\nIntermediate column summary after this step:\n")
+        print_breakdown(current_breakdown, idx, print_to_result)
         
         step_result = calculate_final_result(intermediate_results)
         step_results.append(step_result)
-        print(f"\nStep {idx + 1} result: {step_result}\n")
+        print_to_result(f"\nStep {idx + 1} result: {step_result}\n")
         
-    print("\nSum up all steps from right-most column to left-most.\n")
+    print_to_result("\nSum up all steps from right-most column to left-most.\n")
     
     total_column_contributions, total_columns = generate_total_column_contributions(intermediate_total_results)
     
     total_breakdown = calculate_breakdown(total_columns, total_column_contributions)
     
-    print_breakdown(total_breakdown)
+    print_breakdown(total_breakdown, 0, print_to_result)
     
     final_result = calculate_final_result_from_columns(total_columns)
     
-    print("\nSum everything up:\n")
-    sum_everything_up(step_results)
+    print_to_result("\nSum everything up:\n")
+    sum_everything_up(step_results, print_to_result)
     
-    print(f"\nFinal result: {final_result}\n")
+    print_to_result(f"\nFinal result: {final_result}\n")
+    
+    return "\n".join(result_string)
 
-def print_standing_form(a, b):
+def print_standing_form(a, b, print_fn):
     a_str = str(a)
     b_str = str(b)
     
@@ -57,16 +63,16 @@ def print_standing_form(a, b):
     a_str = a_str.zfill(max_len)
     b_str = b_str.zfill(max_len)
     
-    print(f"    {a_str}")
-    print(f"x   {b_str}")
-    print("-------------")
+    print_fn(f"    {a_str}")
+    print_fn(f"x   {b_str}")
+    print_fn("-------------")
 
-def print_step_intro(digit, a, idx):
-    print()
-    print(f"Step {idx + 1}: Calculate for the {idx + 1}st digit from the right ({digit}):")
-    print()
-    print(f"{digit} * {a} = ?")
-    print()
+def print_step_intro(digit, a, idx, print_fn):
+    print_fn()
+    print_fn(f"Step {idx + 1}: Calculate for the {idx + 1}st digit from the right ({digit}):")
+    print_fn()
+    print_fn(f"{digit} * {a} = ?")
+    print_fn()
 
 def calculate_intermediate_results(digit, a_digits, idx):
     intermediate_results = []
@@ -76,10 +82,10 @@ def calculate_intermediate_results(digit, a_digits, idx):
         intermediate_results.append((product, shifted_product))
     return intermediate_results
 
-def print_intermediate_results(intermediate_results, digit, a_digits, idx):
+def print_intermediate_results(intermediate_results, digit, a_digits, idx, print_fn):
     for i, (product, shifted_product) in enumerate(intermediate_results):
         shift_note = f"(shift whole number {idx + 1} step{'s' if idx > 0 else ''} left)"
-        print(f"{digit} * {a_digits[i]} = {shifted_product} {shift_note}")
+        print_fn(f"{digit} * {a_digits[i]} = {shifted_product} {shift_note}")
 
 def generate_column_contributions(intermediate_total_results):
     max_length = max(len(str(shifted_product)) for results in intermediate_total_results for _, shifted_product in results)
@@ -120,7 +126,7 @@ def calculate_breakdown(columns, column_contributions, shift=0):
     
     return breakdown
 
-def print_breakdown(breakdown, shift=0):
+def print_breakdown(breakdown, shift, print_fn):
     for i, (col, original, value, carry) in enumerate(breakdown):
         if original:
             additions = " + ".join(map(str, original))
@@ -128,7 +134,7 @@ def print_breakdown(breakdown, shift=0):
             additions = "0"
         carry_note = f"({carry} is carried)" if carry else ""
         shift_note = f"(shifted {shift} step{'s' if shift != 1 else ''} left)" if shift > 0 else ""
-        print(f"Column {col}: {additions} = {value} {carry_note} {shift_note}")
+        print_fn(f"Column {col}: {additions} = {value} {carry_note} {shift_note}")
 
 def calculate_final_result(intermediate_results):
     return sum(shifted_product for _, shifted_product in intermediate_results)
@@ -139,11 +145,11 @@ def calculate_final_result_from_columns(columns):
         final_result += column * (10 ** i)
     return final_result
 
-def sum_everything_up(step_results):
+def sum_everything_up(step_results, print_fn):
     max_length = len(str(max(step_results)))
     step_results_str = [str(result).zfill(max_length) for result in step_results]
     for result in step_results_str:
-        print(f"\t{result}")
+        print_fn(f"\t{result}")
     
     columns = list(map(list, zip(*[result[::-1] for result in step_results_str])))
     columns = [[int(digit) for digit in col] for col in columns]
@@ -156,14 +162,34 @@ def sum_everything_up(step_results):
         carry, value = divmod(total, 10)
         breakdown.append((idx + 1, col, value, carry))
     
-    print("\nColumn by column addition:")
+    print_fn("\nColumn by column addition:")
     for i, (col, original, value, carry) in enumerate(breakdown):
         if original:
             additions = " + ".join(map(str, original))
         else:
             additions = "0"
         carry_note = f"({carry} is carried)" if carry else ""
-        print(f"Column {i + 1}: {additions} = {value} {carry_note}")
+        print_fn(f"Column {i + 1}: {additions} = {value} {carry_note}")
+
+def sample_multiplication_steps(min_digits, max_digits, samples_per_size):
+    import statistics
+    import pandas as pd
+    
+    avg_result_lengths = []
+    
+    for digits in range(min_digits, max_digits + 1):
+        results = []
+        for _ in range(samples_per_size):
+            a = random.randint(10**(digits-1), 10**digits - 1)
+            b = random.randint(10**(digits-1), 10**digits - 1)
+            result = generate_multiplication_steps(a, b)
+            results.append(len(result))
+        
+        avg_length = statistics.mean(results)
+        avg_result_lengths.append((digits, avg_length))
+    
+    df = pd.DataFrame(avg_result_lengths, columns=["Number of Digits", "Average Length"])
+    print(df.to_string(index=False))
 
 # Example usage
-generate_multiplication_steps(64369, 95689)
+sample_multiplication_steps(1, 7, 25)
