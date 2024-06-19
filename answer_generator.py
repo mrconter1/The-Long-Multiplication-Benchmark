@@ -82,13 +82,16 @@ def calculate_breakdown(columns, column_contributions):
     for i in range(len(columns)):
         total = columns[i] + carry
         carry, value = divmod(total, 10)
-        breakdown.append((i + 1, column_contributions[i], value, carry))
+        breakdown.append((i + 1, [d for d in column_contributions[i] if d != 0], value, carry))
     
     return breakdown
 
 def print_breakdown(breakdown):
     for i, (col, original, value, carry) in enumerate(breakdown):
-        additions = " + ".join(map(str, original))
+        if original:
+            additions = " + ".join(map(str, original))
+        else:
+            additions = "0"
         carry_note = f"({carry} is carried)" if carry else ""
         print(f"Column {col}: {additions} = {value} {carry_note}")
 
