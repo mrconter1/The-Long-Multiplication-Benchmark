@@ -2,12 +2,12 @@ Certainly! Here is the revised README.md:
 
 # Multiplication Steps Generator
 
-This Python script generates a detailed step-by-step breakdown of the multiplication process for two given integers. It illustrates each step of the traditional long multiplication algorithm, including intermediate results, column-by-column additions, and the final result. This can be particularly useful for educational purposes or for debugging arithmetic operations.
+This Python script generates a detailed step-by-step breakdown of the multiplication process for two given integers, mimicking the traditional long multiplication method taught in schools. It illustrates each step of the schoolbook long multiplication algorithm, including intermediate results, column-by-column additions, and the final result. This can be particularly useful for educational purposes or for debugging arithmetic operations.
 
 ## Functions
 
 ### `generate_multiplication_steps(a, b)`
-Generates a detailed breakdown of the multiplication process for two integers `a` and `b`.
+Creates a detailed breakdown of the multiplication process for two integers `a` and `b`, similar to what a person would write out using the schoolbook long multiplication method.
 
 **Parameters:**
 - `a` (int): The first integer.
@@ -17,7 +17,7 @@ Generates a detailed breakdown of the multiplication process for two integers `a
 - `str`: A detailed description of the multiplication process.
 
 ### `sample_multiplication_steps(min_digits, max_digits, samples_per_size)`
-Generates sample multiplications for numbers with a range of digit lengths and computes the average length of the generated descriptions.
+Generates sample multiplications for numbers with a range of digit lengths and computes the average length of the generated descriptions. This function helps estimate the number of characters a typical person would need to write in order to multiply two same-sized digits of size N.
 
 **Parameters:**
 - `min_digits` (int): Minimum number of digits for the sampled numbers.
