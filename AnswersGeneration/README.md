@@ -1,12 +1,14 @@
 ### Multiplication Steps Generator Script
 
-This script helps you understand the traditional long multiplication method by providing a step-by-step breakdown of the multiplication process for two integers.
+This script helps you understand the traditional long multiplication method by providing a step-by-step breakdown of the multiplication process for two integers. 
+
+The conclusion drawn from the analysis is that a **around 2500 token** context window should be enough to manually calculate the multiplication of two **seven-digit** numbers using the schoolbook long multiplication method.
 
 #### Functions Overview
 
 1. **sample_multiplication_steps**
 
-   The purpose of `sample_multiplication_steps` is to estimate how many characters a typical person would need to solve a multiplication of two same-sized whole numbers using the schoolbook long multiplication method. This function generates sample multiplications for numbers with a range of digit lengths and computes the average length of the generated descriptions.
+   The purpose of `sample_multiplication_steps` is to estimate how many characters and tokens a typical person would need to solve a multiplication of two same-sized whole numbers using the schoolbook long multiplication method. This function generates sample multiplications for numbers with a range of digit lengths and computes the average length of the generated descriptions.
 
    **Example Output:**
 
@@ -22,7 +24,7 @@ This script helps you understand the traditional long multiplication method by p
 
 2. **generate_multiplication_steps**
 
-   `generate_multiplication_steps` is used by `sample_multiplication_steps` and generate a detailed output of all the steps involved in solving a multiplication of two same-sized whole numbers, including all intermediate steps. This function breaks down the multiplication into detailed steps, similar to how it's taught in schools, showing intermediate results and column-by-column additions leading to the final result.
+   `generate_multiplication_steps` is used by `sample_multiplication_steps` and generates a detailed output of all the steps involved in solving a multiplication of two same-sized whole numbers, including all intermediate steps. This function breaks down the multiplication into detailed steps, similar to how it's taught in schools, showing intermediate results and column-by-column additions leading to the final result.
 
    **Example Output for Multiplying 345 and 534:**
    ```
