@@ -4,9 +4,9 @@ This script helps you understand the traditional long multiplication method by p
 
 #### Functions Overview
 
-1. **`sample_multiplication_steps(min_digits, max_digits, samples_per_size)`**
+1. **sample_multiplication_steps**
 
-   The function `sample_multiplication_steps(min_digits, max_digits, samples_per_size)` generates sample multiplications for numbers with a range of digit lengths and computes the average length of the generated descriptions. This helps estimate the number of characters and tokens needed to multiply two same-sized numbers of size N.
+   The purpose of `sample_multiplication_steps` is to estimate how many characters a typical person would need to solve a multiplication of two same-sized whole numbers using the schoolbook long multiplication method. This function generates sample multiplications for numbers with a range of digit lengths and computes the average length of the generated descriptions.
 
    **Example Output:**
 
@@ -20,9 +20,9 @@ This script helps you understand the traditional long multiplication method by p
    | 6                | 6947.12                   | 1736.78                |
    | 7                | 9316.00                   | 2329.00                |
 
-2. **`generate_multiplication_steps(a, b)`**
+2. **generate_multiplication_steps**
 
-   The function `generate_multiplication_steps(a, b)` takes two numbers and breaks down their multiplication into detailed steps, similar to how it's taught in schools. It shows the intermediate results and column-by-column additions leading to the final result.
+   `generate_multiplication_steps` is used by `sample_multiplication_steps` and generate a detailed output of all the steps involved in solving a multiplication of two same-sized whole numbers, including all intermediate steps. This function breaks down the multiplication into detailed steps, similar to how it's taught in schools, showing intermediate results and column-by-column additions leading to the final result.
 
    **Example Output for Multiplying 345 and 534:**
    ```
@@ -115,5 +115,3 @@ This script helps you understand the traditional long multiplication method by p
 
    Final result: 184230
    ```
-
-This example shows each step of multiplying 345 by 534, including the intermediate multiplications and the final addition.
