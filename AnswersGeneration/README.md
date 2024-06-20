@@ -28,40 +28,90 @@ This script helps you understand the traditional long multiplication method by p
    ```
    Calculating:
 
-       523
-   x   421
-   -------------
+    345
+x   534
+-------------
 
-   Step 1: Multiply by the 1st digit from the right (1):
+Step 1: Calculate for the 1st digit from the right (4):
 
-   1 * 523 = 523
+4 * 345 = ?
 
-   Intermediate result:
-       523
+4 * 5 = 20 (shift whole number 1 step left)
+4 * 4 = 160 (shift whole number 1 step left)
+4 * 3 = 1200 (shift whole number 1 step left)
 
-   Step 2: Multiply by the 2nd digit from the right (2), shifted one position to the left:
+Intermediate column summary after this step:
 
-   2 * 523 = 1046
+Column 1: 0 = 0
+Column 2: 2 + 6 = 8
+Column 3: 1 + 2 = 3
+Column 4: 1 = 1
 
-   Intermediate result:
-      10460
+Step 1 result: 1380
 
-   Step 3: Multiply by the 3rd digit from the right (4), shifted two positions to the left:
 
-   4 * 523 = 2092
+Step 2: Calculate for the 2st digit from the right (3):
 
-   Intermediate result:
-     209200
+3 * 345 = ?
 
-   Adding all the intermediate results:
+3 * 5 = 150 (shift whole number 2 steps left)
+3 * 4 = 1200 (shift whole number 2 steps left)
+3 * 3 = 9000 (shift whole number 2 steps left)
 
-       523
-      10460
-     209200
-   -------------
-     220183
+Intermediate column summary after this step:
 
-   Final result: 220183
+Column 2: 0 = 0  (shifted 1 step left)
+Column 3: 2 + 6 + 5 = 3 (1 is carried) (shifted 1 step left)
+Column 4: 1 + 2 + 1 + 2 = 7  (shifted 1 step left)
+Column 5: 1 + 1 + 9 = 1 (1 is carried) (shifted 1 step left)
+
+Step 2 result: 10350
+
+
+Step 3: Calculate for the 3st digit from the right (5):
+
+5 * 345 = ?
+
+5 * 5 = 2500 (shift whole number 3 steps left)
+5 * 4 = 20000 (shift whole number 3 steps left)
+5 * 3 = 150000 (shift whole number 3 steps left)
+
+Intermediate column summary after this step:
+
+Column 3: 0 = 0  (shifted 2 steps left)
+Column 4: 2 + 6 + 5 = 3 (1 is carried) (shifted 2 steps left)
+Column 5: 1 + 2 + 1 + 2 + 5 = 2 (1 is carried) (shifted 2 steps left)
+Column 6: 1 + 1 + 9 + 2 = 4 (1 is carried) (shifted 2 steps left)
+Column 7: 2 + 5 = 8  (shifted 2 steps left)
+Column 8: 1 = 1  (shifted 2 steps left)
+
+Step 3 result: 172500
+
+
+Sum up all steps from right-most column to left-most.
+
+Column 1: 0 = 0
+Column 2: 2 + 6 + 5 = 3 (1 is carried)
+Column 3: 1 + 2 + 1 + 2 + 5 = 2 (1 is carried)
+Column 4: 1 + 1 + 9 + 2 = 4 (1 is carried)
+Column 5: 2 + 5 = 8
+Column 6: 1 = 1
+
+Sum everything up:
+
+        001380
+        010350
+        172500
+
+Column by column addition:
+Column 1: 0 + 0 + 0 = 0
+Column 2: 8 + 5 + 0 = 3 (1 is carried)
+Column 3: 3 + 3 + 5 = 2 (1 is carried)
+Column 4: 1 + 0 + 2 = 4
+Column 5: 0 + 1 + 7 = 8
+Column 6: 0 + 0 + 1 = 1
+
+Final result: 184230
    ```
 
 This example shows each step of multiplying 523 by 421, including the intermediate multiplications and the final addition.
