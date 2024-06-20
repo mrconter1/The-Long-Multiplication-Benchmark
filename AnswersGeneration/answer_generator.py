@@ -186,9 +186,10 @@ def sample_multiplication_steps(min_digits, max_digits, samples_per_size):
             results.append(len(result))
         
         avg_length = statistics.mean(results)
-        avg_result_lengths.append((digits, avg_length))
+        avg_tokens = avg_length / 4  # 1 token ~= 4 chars in English
+        avg_result_lengths.append((digits, avg_length, avg_tokens))
     
-    df = pd.DataFrame(avg_result_lengths, columns=["Number of Digits", "Average Length"])
+    df = pd.DataFrame(avg_result_lengths, columns=["Length of digits", "Average Characters Needed", "Average Tokens Needed"])
     print(df.to_string(index=False))
 
 # Example usage
