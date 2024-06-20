@@ -1,8 +1,6 @@
-### Multiplication Steps Generator Script
+### Multiplication Context Size Estimation
 
-This script helps you understand the traditional long multiplication method by providing a step-by-step breakdown of the multiplication process for two integers. 
-
-The conclusion drawn from the analysis is that a **around 2500 token** context window should be enough to manually calculate the multiplication of two **seven-digit** numbers using the schoolbook long multiplication method.
+The `estimator.py` script enables estimation of the context window size needed to manually perform schoolbook long multiplication. It provides a step-by-step breakdown of the multiplication process for two integers. The conclusion drawn from the analysis is that an **around 2500 token** context window should be enough to manually calculate the multiplication of two **seven-digit** numbers using the schoolbook long multiplication method.
 
 #### Functions Overview
 
