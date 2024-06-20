@@ -25,17 +25,17 @@ The answer to this problem is 6159405241.
 
 ### Results
 
-Each entry in the results table represents the percentage of correct answers for 25 samples per number of digits.
+Each entry in the results table represents the percentage of correct answers for 25 samples per number of digits. The context window size for each model is also provided.
 
-| Length | gpt-3.5-turbo | gpt-4-turbo | gpt-4o | gemini-1.5-pro |
-|--------|---------------|-------------|--------|----------------|
-| 1      | 100.00        | 100.00      | 100.00 | 100.00         |
-| 2      | 96.00         | 100.00      | 100.00 | 100.00         |
-| 3      | 48.00         | 64.00       | 64.00  | 56.00          |
-| 4      | 4.00          | 12.00       | 12.00  | 20.00          |
-| 5      | 0.00          | 0.00        | 0.00   | 0.00           |
-| 6      | 0.00          | 0.00        | 0.00   | 0.00           |
-| 7      | 0.00          | 0.00        | 0.00   | 0.00           |
+| Length | gpt-3.5-turbo (16K tokens) | gpt-4-turbo (128K tokens) | gpt-4o (128K tokens) | gemini-1.5-pro (1M tokens) |
+|--------|-----------------------------|---------------------------|----------------------|----------------------------|
+| 1      | 100.00                      | 100.00                    | 100.00               | 100.00                     |
+| 2      | 96.00                       | 100.00                    | 100.00               | 100.00                     |
+| 3      | 48.00                       | 64.00                     | 64.00                | 56.00                      |
+| 4      | 4.00                        | 12.00                     | 12.00                | 20.00                      |
+| 5      | 0.00                        | 0.00                      | 0.00                 | 0.00                       |
+| 6      | 0.00                        | 0.00                      | 0.00                 | 0.00                       |
+| 7      | 0.00                        | 0.00                      | 0.00                 | 0.00                       |
 
 ### Benchmark Script
 
@@ -45,4 +45,4 @@ Each entry in the results table represents the percentage of correct answers for
 
 The benchmark demonstrates that while the context sizes and computational resources of current LLMs are theoretically sufficient, the limiting factor is their inability to actually utilize the information within their context windows efficiently.
 
-This repository offers a scalable method to validate the capability of future LLMs to not only read long contexts but also to constructively use them. By leveraging long multiplication as a benchmark, it provides a straightforward way to evaluate how well LLMs utilize long contexts meaningfully. 
+This repository offers a scalable method to validate the capability of future LLMs to not only read long contexts but also to constructively use them. By leveraging long multiplication as a benchmark, it provides a straightforward way to evaluate how well LLMs utilize long contexts meaningfully.
