@@ -1,85 +1,67 @@
-# Multiplication Steps Generator
+### Multiplication Steps Generator Script
 
-This Python script generates a detailed step-by-step breakdown of the multiplication process for two given integers, mimicking the traditional long multiplication method taught in schools. It illustrates each step of the schoolbook long multiplication algorithm, including intermediate results, column-by-column additions, and the final result. This can be particularly useful for educational purposes or for debugging arithmetic operations.
+This script helps you understand the traditional long multiplication method by providing a step-by-step breakdown of the multiplication process for two integers.
 
-## Functions
+#### Functions Overview
 
-### `generate_multiplication_steps(a, b)`
-Creates a detailed breakdown of the multiplication process for two integers `a` and `b`, similar to what a person would write out using the schoolbook long multiplication method.
+1. **`sample_multiplication_steps(min_digits, max_digits, samples_per_size)`**
 
-**Parameters:**
-- `a` (int): The first integer.
-- `b` (int): The second integer.
+   The function `sample_multiplication_steps(min_digits, max_digits, samples_per_size)` generates sample multiplications for numbers with a range of digit lengths and computes the average length of the generated descriptions. This helps estimate the number of characters and tokens needed to multiply two same-sized numbers of size N.
 
-**Returns:**
-- `str`: A detailed description of the multiplication process.
+   **Example Output:**
 
-### `sample_multiplication_steps(min_digits, max_digits, samples_per_size)`
-Generates sample multiplications for numbers with a range of digit lengths and computes the average length of the generated descriptions. This function helps estimate the number of characters a typical person would need to write in order to multiply two same-sized digits of size N.
+   | Length of digits | Average Characters Needed | Average Tokens Needed |
+   |------------------|---------------------------|------------------------|
+   | 1                | 441.60                    | 110.40                 |
+   | 2                | 1042.44                   | 260.61                 |
+   | 3                | 1923.52                   | 480.88                 |
+   | 4                | 3282.24                   | 820.56                 |
+   | 5                | 4895.08                   | 1223.77                |
+   | 6                | 6947.12                   | 1736.78                |
+   | 7                | 9316.00                   | 2329.00                |
 
-**Parameters:**
-- `min_digits` (int): Minimum number of digits for the sampled numbers.
-- `max_digits` (int): Maximum number of digits for the sampled numbers.
-- `samples_per_size` (int): Number of samples to generate per digit length.
+2. **`generate_multiplication_steps(a, b)`**
 
-## Usage
+   The function `generate_multiplication_steps(a, b)` takes two numbers and breaks down their multiplication into detailed steps, similar to how it's taught in schools. It shows the intermediate results and column-by-column additions leading to the final result.
 
-To use the script, call the `generate_multiplication_steps` function with two integers as arguments. For example:
+   **Example Output for Multiplying 523 and 421:**
+   ```
+   Calculating:
 
-```python
-print(generate_multiplication_steps(523, 421))
-```
+       523
+   x   421
+   -------------
 
-This will output a detailed breakdown of the multiplication process for 523 and 421.
+   Step 1: Multiply by the 1st digit from the right (1):
 
-To generate and analyze samples, call the `sample_multiplication_steps` function:
+   1 * 523 = 523
 
-```python
-sample_multiplication_steps(1, 7, 25)
-```
+   Intermediate result:
+       523
 
-This will generate multiplication steps for numbers with digit lengths ranging from 1 to 7, with 25 samples per digit length, and print a DataFrame showing the average length of the generated descriptions.
+   Step 2: Multiply by the 2nd digit from the right (2), shifted one position to the left:
 
-## Example Output
+   2 * 523 = 1046
 
-```plaintext
-Calculating:
+   Intermediate result:
+      10460
 
-    523
-x   421
--------------
+   Step 3: Multiply by the 3rd digit from the right (4), shifted two positions to the left:
 
-Step 1: Calculate for the 1st digit from the right (1):
+   4 * 523 = 2092
 
-1 * 523 = ?
+   Intermediate result:
+     209200
 
-1 * 3 = 3 (shift whole number 1 step left)
-1 * 2 = 20 (shift whole number 1 step left)
-1 * 5 = 500 (shift whole number 1 step left)
+   Adding all the intermediate results:
 
-Intermediate column summary after this step:
+       523
+      10460
+     209200
+   -------------
+     220183
 
-Column 1: 3 = 3
-Column 2: 2 = 2
-Column 3: 5 = 5
+   Final result: 220183
+   ```
 
-Step 1 result: 523
-
-...
-
-Sum everything up:
-
-    000523
-    010460
-    209200
-
-Column by column addition:
-Column 1: 3 + 0 + 0 = 3
-Column 2: 2 + 6 + 0 = 8
-Column 3: 5 + 4 + 2 = 1 (1 is carried)
-Column 4: 0 + 0 + 9 = 0 (1 is carried)
-Column 5: 0 + 1 + 0 = 2
-Column 6: 0 + 0 + 2 = 2
-
-Final result: 220183
-```
+This example shows each step of multiplying 523 by 421, including the intermediate multiplications and the final addition.
