@@ -1,5 +1,3 @@
-Certainly! Here is the revised README.md:
-
 # Multiplication Steps Generator
 
 This Python script generates a detailed step-by-step breakdown of the multiplication process for two given integers, mimicking the traditional long multiplication method taught in schools. It illustrates each step of the schoolbook long multiplication algorithm, including intermediate results, column-by-column additions, and the final result. This can be particularly useful for educational purposes or for debugging arithmetic operations.
