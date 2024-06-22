@@ -171,6 +171,14 @@ def sum_everything_up(step_results, print_fn):
         carry_note = f"({carry} is carried)" if carry else ""
         print_fn(f"Column {i + 1}: {additions} = {value} {carry_note}")
 
+def format_number(n):
+    if n < 1000:
+        return str(n)
+    elif n < 1000000:
+        return f"{n/1000:.1f}k"
+    else:
+        return f"{n/1000000:.1f}M"
+
 def sample_multiplication_steps(digit_lengths, samples_per_size):
     import statistics
     import pandas as pd
@@ -190,8 +198,11 @@ def sample_multiplication_steps(digit_lengths, samples_per_size):
         avg_result_lengths.append((digits, avg_length, avg_tokens))
     
     df = pd.DataFrame(avg_result_lengths, columns=["Length of digits", "Average Characters Needed", "Average Tokens Needed"])
+    df["Average Characters Needed"] = df["Average Characters Needed"].apply(format_number)
+    df["Average Tokens Needed"] = df["Average Tokens Needed"].apply(format_number)
     print(df.to_string(index=False))
 
+# Example usage
 digit_lengths_to_try = [1, 2, 3, 5, 7, 10, 15, 20, 50, 100]
-sample_rate = 1
+sample_rate = 5
 sample_multiplication_steps(digit_lengths_to_try, sample_rate)
