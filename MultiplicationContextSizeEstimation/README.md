@@ -8,17 +8,20 @@ The `estimator.py` script enables estimation of the context window size needed t
 
    The purpose of `sample_multiplication_steps` is to estimate how many characters and tokens a typical person would need to solve a multiplication of two same-sized whole numbers using the schoolbook long multiplication method. This function generates sample multiplications for numbers with a range of digit lengths and computes the average length of the generated descriptions.
 
-   **Example Output:**
+   **Output with sample rate of five:**
 
-   | Length of digits | Average Characters Needed | Average Tokens Needed |
-   |------------------|---------------------------|------------------------|
-   | 1                | 441.60                    | 110.40                 |
-   | 2                | 1042.44                   | 260.61                 |
-   | 3                | 1923.52                   | 480.88                 |
-   | 4                | 3282.24                   | 820.56                 |
-   | 5                | 4895.08                   | 1223.77                |
-   | 6                | 6947.12                   | 1736.78                |
-   | 7                | 9316.00                   | 2329.00                |
+| Length of digits | Average Characters Needed | Average Tokens Needed |
+|------------------|---------------------------|------------------------|
+| 1                | 441.6                     | 110.4                  |
+| 2                | 1.1k                      | 268.6                  |
+| 3                | 2.0k                      | 497.55                 |
+| 5                | 4.8k                      | 1.2k                   |
+| 7                | 9.4k                      | 2.4k                   |
+| 10               | 19.7k                     | 4.9k                   |
+| 15               | 47.6k                     | 11.9k                  |
+| 20               | 86.7k                     | 21.7k                  |
+| 50               | 809.4k                    | 202.4k                 |
+| 100              | 5.0M                      | 1.3M                   |
 
 2. **generate_multiplication_steps**
 
