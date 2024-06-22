@@ -171,13 +171,13 @@ def sum_everything_up(step_results, print_fn):
         carry_note = f"({carry} is carried)" if carry else ""
         print_fn(f"Column {i + 1}: {additions} = {value} {carry_note}")
 
-def sample_multiplication_steps(min_digits, max_digits, samples_per_size):
+def sample_multiplication_steps(digit_lengths, samples_per_size):
     import statistics
     import pandas as pd
     
     avg_result_lengths = []
     
-    for digits in range(min_digits, max_digits + 1):
+    for digits in digit_lengths:
         results = []
         for _ in range(samples_per_size):
             a = random.randint(10**(digits-1), 10**digits - 1)
@@ -192,5 +192,6 @@ def sample_multiplication_steps(min_digits, max_digits, samples_per_size):
     df = pd.DataFrame(avg_result_lengths, columns=["Length of digits", "Average Characters Needed", "Average Tokens Needed"])
     print(df.to_string(index=False))
 
-# Example usage
-sample_multiplication_steps(1, 7, 25)
+digit_lengths_to_try = [1, 2, 3, 5, 7, 10, 15, 20, 50, 100]
+sample_rate = 1
+sample_multiplication_steps(digit_lengths_to_try, sample_rate)
