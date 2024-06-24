@@ -43,7 +43,7 @@ Based on the context window size analysis, here is an approximate estimation of 
 
 Each entry in the results table represents the percentage of correct answers for 5 samples per number of digits. The context window size for each model is also provided.
 
-| Length | gpt-3.5-turbo 16K tokens | gpt-4-turbo 128K tokens | gpt-4o 128K tokens | gemini-1.5-pro 1M tokens | claude-3-5-sonnet-20240620 |
+| Length | gpt-3.5-turbo | gpt-4-turbo | gpt-4o | gemini-1.5-pro | claude-3-5-sonnet-20240620 |
 |--------|-----------------------------|---------------------------|----------------------|----------------------------|----------------------------|
 | 1      | 90.00                       | 100.00                    | 100.00               | 100.00                     | 100.00                     |
 | 2      | 70.00                       | 90.00                     | 100.00               | 100.00                     | 100.00                     |
