@@ -36,17 +36,11 @@ def generate_long_multiplication_question(length):
     B = random.randint(10**(length-1), 10**length - 1)
     C = A * B
     
-    question = f"""Use the schoolbook long multiplication method to find the exact result of {A} * {B} to full precision. 
-        Show **every** step of the multiplication and addition, **including** all carried digits.
-        Do not simplify or omit any intermediate calculations. 
-        Do not use any tools or calculators. Approximate answers are not allowed. 
-        Avoid taking shortcuts or estimating steps in the execution. 
-        Perform all calculations thoroughly and exactly.
-
-        Examples:
-        If the result is 43421, write 'Answer: 43421'
-        If the result is 7623, write 'Answer: 7623'
-        """
+    question = f"""think step by step, including for the sum of all the partial products (add them one by one): please multiply {A} and {B}
+            MAKE SURE TO ANSWER IN THE FOLLOWING FORMAT BELOW:
+            If the result is 43421, write 'Answer: 43421'
+            If the result is 7623, write 'Answer: 7623'
+            """
 
     return question, C
 
