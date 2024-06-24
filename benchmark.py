@@ -2,8 +2,8 @@ import asyncio
 import re
 import backend
 
-evaluations_per_template = 5
-max_length = 9
+evaluations_per_template = 25
+max_length = 10
 
 models_to_benchmark = [
     {"provider": "openai", "name": "gpt-3.5-turbo"},

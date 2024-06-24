@@ -17,7 +17,7 @@ import anthropic
 anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
 anthropic_client = anthropic.Anthropic(api_key=anthropic_api_key)
 
-def load_question_templates(file_path='multiplication_templates.json'):
+def load_question_templates(file_path='question_templates.json'):
     with open(file_path, 'r') as file:
         templates = json.load(file)
     return templates
@@ -46,10 +46,10 @@ async def ask_model(question, model):
             answer = response.choices[0].message.content.strip()
         elif model["provider"] == "google":
             google_model = genai.GenerativeModel(model["name"])
-            response = google_model.generate_content(question)
+            response = await google_model.generate_content(question)
             answer = response.text.strip()
         elif model["provider"] == "anthropic":
-            response = anthropic_client.messages.create(
+            response = await anthropic_client.messages.create(
                 model=model["name"],
                 max_tokens=4000,
                 temperature=0.5,
