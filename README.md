@@ -25,11 +25,25 @@ The answer to this problem is 6159405241.
 
 Long multiplication is akin to executing an algorithm like a computer, involving precise steps without the need for estimations, making it a more straightforward benchmark compared to tasks like long division, which require estimation steps, as seen in benchmarks like [The Long Division Benchmark](https://github.com/mrconter1/The-Long-Division-Benchmark/).
 
+### Estimated Handling Capability
+
+Based on the context window size analysis, here is an approximate estimation of how many digits each model **should** be able to handle using the schoolbook long multiplication method. 
+
+| Model                                | Context Window Size | Expected Digit Length |
+|--------------------------------------|---------------------|-----------------------|
+| gpt-3.5-turbo                        | 16K tokens          | 10 digits             |
+| gpt-4-turbo                          | 128K tokens         | 30 digits             |
+| gpt-4o                               | 128K tokens         | 30 digits             |
+| gemini-1.5-pro                       | 1M tokens           | 50 digits             |
+| claude-3-5-sonnet-20240620           | 200K tokens         | 40 digits             |
+
+*The expected digit lengths are derived from the context window size analysis, detailed in the [Multiplication Capability Estimation](MultiplicationContextSizeEstimation/README.md).*
+
 ### Results
 
 Each entry in the results table represents the percentage of correct answers for 5 samples per number of digits. The context window size for each model is also provided.
 
-| Length | gpt-3.5-turbo (16K tokens) | gpt-4-turbo (128K tokens) | gpt-4o (128K tokens) | gemini-1.5-pro (1M tokens) | claude-3-5-sonnet-20240620 (200K tokens) |
+| Length | gpt-3.5-turbo 16K tokens | gpt-4-turbo 128K tokens | gpt-4o 128K tokens | gemini-1.5-pro 1M tokens | claude-3-5-sonnet-20240620 |
 |--------|-----------------------------|---------------------------|----------------------|----------------------------|----------------------------|
 | 1      | 90.00                       | 100.00                    | 100.00               | 100.00                     | 100.00                     |
 | 2      | 70.00                       | 90.00                     | 100.00               | 100.00                     | 100.00                     |
