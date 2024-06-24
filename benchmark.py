@@ -8,7 +8,8 @@ models_to_benchmark = [
     {"provider": "openai", "name": "gpt-3.5-turbo"},
     {"provider": "openai", "name": "gpt-4-turbo"},
     {"provider": "openai", "name": "gpt-4o"},
-    {"provider": "google", "name": "gemini-1.5-pro"}
+    {"provider": "google", "name": "gemini-1.5-pro"},
+    {"provider": "anthropic", "name": "claude-3-5-sonnet-20240620"}
 ]
 
 # Global variables
@@ -16,6 +17,7 @@ evaluations_per_length = 25
 max_length = 7
 openai_api_key = os.getenv('OPENAI_API_KEY')
 google_api_key = os.getenv('GOOGLE_API_KEY')
+anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
 
 # OpenAI setup
 from openai import AsyncOpenAI
@@ -24,6 +26,10 @@ openai_client = AsyncOpenAI(api_key=openai_api_key)
 # Google setup
 import google.generativeai as genai
 genai.configure(api_key=google_api_key)
+
+# Anthropic setup
+import anthropic
+anthropic_client = anthropic.Anthropic(api_key=anthropic_api_key)
 
 def generate_long_multiplication_question(length):
     A = random.randint(10**(length-1), 10**length - 1)
@@ -60,6 +66,20 @@ async def ask_model(question, model):
             google_model = genai.GenerativeModel(model["name"])
             response = google_model.generate_content(question)
             answer = response.text.strip()
+        elif model["provider"] == "anthropic":
+            print("Running")
+            response = anthropic_client.messages.create(
+                model=model["name"],
+                max_tokens=4000,
+                temperature=0.5,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": question
+                    }
+                ]
+            )
+            answer = response.completion.strip()
         return answer
     except Exception as e:
         print(f"Error during API call: {e}")
