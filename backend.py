@@ -1,4 +1,5 @@
 import random
+import json
 import os
 
 # OpenAI setup
@@ -16,16 +17,18 @@ import anthropic
 anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
 anthropic_client = anthropic.Anthropic(api_key=anthropic_api_key)
 
-def generate_long_multiplication_question(length):
+def load_question_templates(file_path='multiplication_templates.json'):
+    with open(file_path, 'r') as file:
+        templates = json.load(file)
+    return templates
+
+def generate_long_multiplication_question(length, template):
     A = random.randint(10**(length-1), 10**length - 1)
     B = random.randint(10**(length-1), 10**length - 1)
     C = A * B
-    
-    question = f"""think step by step, including for the sum of all the partial products (add them one by one): please multiply {A} and {B}
-            MAKE SURE TO ANSWER IN THE FOLLOWING FORMAT BELOW:
-            If the result is 43421, write 'Answer: 43421'
-            If the result is 7623, write 'Answer: 7623'
-            """
+
+    # Format the question using the provided template
+    question = template.format(A=A, B=B)
 
     return question, C
 

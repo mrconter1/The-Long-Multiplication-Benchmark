@@ -2,7 +2,7 @@ import asyncio
 import re
 import backend
 
-evaluations_per_length = 10
+evaluations_per_template = 5
 max_length = 9
 
 models_to_benchmark = [
@@ -13,22 +13,26 @@ models_to_benchmark = [
     {"provider": "anthropic", "name": "claude-3-5-sonnet-20240620"}
 ]
 
-async def benchmark_model(model, evaluations_per_length, max_length):
+async def benchmark_model(model, evaluations_per_template, max_length):
     results = {}
     print(f"Evaluating model: {model['name']}")
+
+    # Load templates
+    multiplication_templates = backend.load_question_templates()
 
     for length in range(1, max_length + 1):
         correct = 0
         tasks = []
 
-        for _ in range(evaluations_per_length):
-            question, correct_answer = backend.generate_long_multiplication_question(length)
-            tasks.append((question, correct_answer))
+        for template in multiplication_templates:
+            for _ in range(evaluations_per_template):
+                question, correct_answer = backend.generate_long_multiplication_question(length, template['template'])
+                tasks.append((question, correct_answer))
 
         responses = await asyncio.gather(*[backend.ask_model(q, model) for q, _ in tasks])
 
         for (question, correct_answer), model_answer in zip(tasks, responses):
-            question_str = question.split("of ")[-1].split(" to")[0]
+            question_str = question.split("multiply ")[-1].split("\n")[0]
             print(f"Problem: {question_str}")
             print(f"Expected Answer: {correct_answer}")
 
@@ -53,16 +57,16 @@ async def benchmark_model(model, evaluations_per_length, max_length):
             else:
                 print("Result: No response from model\n")
 
-        success_rate = (correct / evaluations_per_length) * 100
+        success_rate = (correct / (evaluations_per_template * len(multiplication_templates))) * 100
         results[length] = success_rate
         print(f"Success Rate for length {length}: {success_rate:.2f}%\n")
 
     return model["name"], results
 
-async def run_benchmark(models_to_benchmark, evaluations_per_length, max_length):
+async def run_benchmark(models_to_benchmark, evaluations_per_template, max_length):
     all_results = {}
     for model in models_to_benchmark:
-        model_name, results = await benchmark_model(model, evaluations_per_length, max_length)
+        model_name, results = await benchmark_model(model, evaluations_per_template, max_length)
         all_results[model_name] = results
     return all_results
 
@@ -86,7 +90,7 @@ def print_benchmark_results(all_results, max_length):
         print("| " + " | ".join(map(str, row)) + " |")
 
 async def main():
-    all_results = await run_benchmark(models_to_benchmark, evaluations_per_length, max_length)
+    all_results = await run_benchmark(models_to_benchmark, evaluations_per_template, max_length)
     print_benchmark_results(all_results, max_length)
 
 if __name__ == "__main__":

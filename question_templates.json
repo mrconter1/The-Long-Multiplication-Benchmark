@@ -1,0 +1,5 @@
+[
+    {
+        "template": "think step by step, including for the sum of all the partial products (add them one by one): please multiply {A} and {B}\nMAKE SURE TO ANSWER IN THE FOLLOWING FORMAT BELOW:\nIf the result is 43421, write 'Answer: 43421'\nIf the result is 7623, write 'Answer: 7623'"
+    }
+]
