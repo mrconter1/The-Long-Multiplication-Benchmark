@@ -173,7 +173,7 @@ def sum_everything_up(step_results, print_fn):
 
 def format_number(n):
     if n < 1000:
-        return str(n)
+        return str(round(n,1))
     elif n < 1000000:
         return f"{n/1000:.1f}k"
     else:
@@ -203,6 +203,6 @@ def sample_multiplication_steps(digit_lengths, samples_per_size):
     print(df.to_string(index=False))
 
 # Example usage
-digit_lengths_to_try = [1, 2, 3, 5, 7, 10, 15, 20, 50, 100]
+digit_lengths_to_try = [1, 2, 3, 5, 7, 10, 15, 20, 25, 30, 40, 50, 75, 100, 150]
 sample_rate = 5
 sample_multiplication_steps(digit_lengths_to_try, sample_rate)
