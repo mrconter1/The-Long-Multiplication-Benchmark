@@ -21,9 +21,7 @@ For example, consider the long multiplication problem for **n=5**:
 
 The answer to this problem is 6159405241.
 
-*Note: This is a simplified version of the prompt. The full prompt can be found in the benchmark.*
-
-Long multiplication is akin to executing an algorithm like a computer, involving precise steps without the need for estimations, making it a more straightforward benchmark compared to tasks like long division, which require estimation steps, as seen in benchmarks like [The Long Division Benchmark](https://github.com/mrconter1/The-Long-Division-Benchmark/).
+*Note: This is a simplified version of the prompt. The full prompt can be found in the [benchmark](./question_templates.json).*
 
 ### Estimated Handling Capability
 
