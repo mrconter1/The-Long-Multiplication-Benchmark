@@ -78,7 +78,7 @@ async def ask_model(question, model):
                     }
                 ]
             )
-            answer = response.completion.strip()
+            answer = response.content[0].text
         return answer
     except Exception as e:
         print(f"Error during API call: {e}")
