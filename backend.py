@@ -46,7 +46,7 @@ async def ask_model(question, model):
             answer = response.choices[0].message.content.strip()
         elif model["provider"] == "google":
             google_model = genai.GenerativeModel(model["name"])
-            response = await google_model.generate_content(question)
+            response = google_model.generate_content(question)
             answer = response.text.strip()
         elif model["provider"] == "anthropic":
             response = await anthropic_client.messages.create(
