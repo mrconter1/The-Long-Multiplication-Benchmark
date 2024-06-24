@@ -67,7 +67,6 @@ async def ask_model(question, model):
             response = google_model.generate_content(question)
             answer = response.text.strip()
         elif model["provider"] == "anthropic":
-            print("Running")
             response = anthropic_client.messages.create(
                 model=model["name"],
                 max_tokens=4000,
