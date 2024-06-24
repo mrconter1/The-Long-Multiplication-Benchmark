@@ -37,7 +37,7 @@ Based on the context window size analysis, here is an approximate estimation of 
 | gemini-1.5-pro                       | 1M tokens           | 50 digits             |
 | claude-3-5-sonnet-20240620           | 200K tokens         | 40 digits             |
 
-*The expected digit lengths are derived from the context window size analysis, detailed in the [Multiplication Capability Estimation](MultiplicationContextSizeEstimation/README.md).*
+*The expected digit lengths are derived from the context window size analysis, detailed [here](MultiplicationContextSizeEstimation/README.md).*
 
 ### Results
 
