@@ -27,17 +27,19 @@ Long multiplication is akin to executing an algorithm like a computer, involving
 
 ### Results
 
-Each entry in the results table represents the percentage of correct answers for 25 samples per number of digits. The context window size for each model is also provided.
+Each entry in the results table represents the percentage of correct answers for 5 samples per number of digits. The context window size for each model is also provided.
 
-| Length | gpt-3.5-turbo (16K tokens) | gpt-4-turbo (128K tokens) | gpt-4o (128K tokens) | gemini-1.5-pro (1M tokens) |
-|--------|-----------------------------|---------------------------|----------------------|----------------------------|
-| 1      | 100.00                      | 100.00                    | 100.00               | 100.00                     |
-| 2      | 96.00                       | 100.00                    | 100.00               | 100.00                     |
-| 3      | 48.00                       | 64.00                     | 64.00                | 56.00                      |
-| 4      | 4.00                        | 12.00                     | 12.00                | 20.00                      |
-| 5      | 0.00                        | 0.00                      | 0.00                 | 0.00                       |
-| 6      | 0.00                        | 0.00                      | 0.00                 | 0.00                       |
-| 7      | 0.00                        | 0.00                      | 0.00                 | 0.00                       |
+| Length | gpt-3.5-turbo (16K tokens) | gpt-4-turbo (128K tokens) | gpt-4o (128K tokens) | gemini-1.5-pro (1M tokens) | claude-3-5-sonnet-20240620 (200K tokens) |
+|--------|-----------------------------|---------------------------|----------------------|----------------------------|----------------------------|
+| 1      | 90.00                       | 100.00                    | 100.00               | 100.00                     | 100.00                     |
+| 2      | 70.00                       | 90.00                     | 100.00               | 100.00                     | 100.00                     |
+| 3      | 10.00                       | 100.00                    | 100.00               | 80.00                      | 90.00                      |
+| 4      | 0.00                        | 10.00                     | 0.00                 | 50.00                      | 90.00                      |
+| 5      | 0.00                        | 0.00                      | 20.00                | 40.00                      | 90.00                      |
+| 6      | 0.00                        | 0.00                      | 0.00                 | 10.00                      | 20.00                      |
+| 7      | 0.00                        | 0.00                      | 20.00                | 0.00                       | 20.00                      |
+| 8      | 0.00                        | 0.00                      | 0.00                 | 0.00                       | 20.00                      |
+| 9      | 0.00                        | 0.00                      | 0.00                 | 0.00                       | 20.00                      |
 
 ### Benchmark Script
 
