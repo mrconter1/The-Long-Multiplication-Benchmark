@@ -13,8 +13,8 @@ models_to_benchmark = [
 ]
 
 # Global variables
-evaluations_per_length = 25
-max_length = 7
+evaluations_per_length = 10
+max_length = 10
 openai_api_key = os.getenv('OPENAI_API_KEY')
 google_api_key = os.getenv('GOOGLE_API_KEY')
 anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
