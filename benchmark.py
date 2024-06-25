@@ -2,7 +2,7 @@ import asyncio
 import re
 import backend
 
-evaluations_per_template = 25
+evaluations_per_template = 50
 max_length = 10
 
 models_to_benchmark = [
@@ -33,6 +33,8 @@ async def benchmark_model(model, evaluations_per_template, max_length):
 
         for (question, correct_answer), model_answer in zip(tasks, responses):
             question_str = question.split("multiply ")[-1].split("\n")[0]
+            print(f"Model: {model['name']}")
+            print(f"Length: {length}")
             print(f"Problem: {question_str}")
             print(f"Expected Answer: {correct_answer}")
 
