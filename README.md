@@ -39,19 +39,20 @@ Based on the context window size analysis, here is an approximate estimation of 
 
 ### Results
 
-Each entry in the results table represents the percentage of correct answers for 5 samples per number of digits. The context window size for each model is also provided.
+Each entry in the results table represents the percentage of correct answers for 50 samples per number of digits. The context window size for each model is also provided.
 
 | Length | gpt-3.5-turbo | gpt-4-turbo | gpt-4o | gemini-1.5-pro | claude-3-5-sonnet-20240620 |
-|--------|-----------------------------|---------------------------|----------------------|----------------------------|----------------------------|
-| 1      | 90.00                       | 100.00                    | 100.00               | 100.00                     | 100.00                     |
-| 2      | 70.00                       | 90.00                     | 100.00               | 100.00                     | 100.00                     |
-| 3      | 10.00                       | 100.00                    | 100.00               | 80.00                      | 90.00                      |
-| 4      | 0.00                        | 10.00                     | 0.00                 | 50.00                      | 90.00                      |
-| 5      | 0.00                        | 0.00                      | 20.00                | 40.00                      | 90.00                      |
-| 6      | 0.00                        | 0.00                      | 0.00                 | 10.00                      | 20.00                      |
-| 7      | 0.00                        | 0.00                      | 20.00                | 0.00                       | 20.00                      |
-| 8      | 0.00                        | 0.00                      | 0.00                 | 0.00                       | 20.00                      |
-| 9      | 0.00                        | 0.00                      | 0.00                 | 0.00                       | 20.00                      |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| 1 | 94.00 | 100.00 | 100.00 | 100.00 | 100.00 |
+| 2 | 72.00 | 100.00 | 100.00 | 94.00 | 96.00 |
+| 3 | 34.00 | 84.00 | 88.00 | 94.00 | 98.00 |
+| 4 | 0.00 | 24.00 | 26.00 | 62.00 | 100.00 |
+| 5 | 0.00 | 0.00 | 10.00 | 28.00 | 76.00 |
+| 6 | 0.00 | 0.00 | 8.00 | 4.00 | 74.00 |
+| 7 | 0.00 | 0.00 | 12.00 | 10.00 | 32.00 |
+| 8 | 0.00 | 0.00 | 10.00 | 0.00 | 16.00 |
+| 9 | 0.00 | 0.00 | 6.00 | 0.00 | 0.00 |
+| 10 | 0.00 | 0.00 | 2.00 | 0.00 | 0.00 |
 
 ### Benchmark Script
 
