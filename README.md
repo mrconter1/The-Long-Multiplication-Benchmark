@@ -60,7 +60,7 @@ Each entry in the results table represents the percentage of correct answers for
 
 ### Multiplication Context Size Estimation
 
-[Multiplication Context Size Estimation](MultiplicationContextSizeEstimation/README.md) is used to estimate the context window size needed for manual schoolbook long multiplication. According to the analysis, a **2500 token** context window is sufficient to multiply two **seven-digit** numbers, helping to evaluate LLMs' ability to handle extensive contexts.
+[Multiplication Context Size Estimation](MultiplicationContextSizeEstimation/README.md) is used to estimate the context window size needed for manual schoolbook long multiplication.
 
 ### Conclusion
 
