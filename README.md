@@ -1,6 +1,6 @@
 # The Long Multiplication Benchmark
 
-The Long Multiplication Benchmark evaluates Large Language Models (LLMs) on their ability to handle and utilize long contexts to solve multiplication problems. Despite long multiplication requiring only **[2500 tokens](MultiplicationContextSizeEstimation/README.md)** for two seven-digit numbers, **[no modern LLM](#results)** can solve even two five-digit numbers, revealing a significant gap in their context utilization capabilities compared to humans.
+The Long Multiplication Benchmark evaluates Large Language Models (LLMs) on their ability to handle and utilize long contexts to solve multiplication problems. Despite long multiplication requiring only **[4,700 tokens](MultiplicationContextSizeEstimation/README.md)** for two ten-digit numbers, **[most modern LLMs](#results)** are struggling with even this task, revealing a significant gap in their context utilization capabilities compared to humans.
 
 #### Motivation
 
